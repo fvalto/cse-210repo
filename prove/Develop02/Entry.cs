@@ -1,27 +1,34 @@
+using System.Collections.Generic;
+
 public class Entry
 {
-    string _date = DateTime.Now.ToShortDateString();
-    string _time = DateTime.Now.ToString("h:mm:ss tt");
+    public string _date;
+    public string _time;
+    public string _prompt;
+    public string _response;
+    public string _overallFeeling;
+    // public void WriteEntry(Journal journal)
+    // {
+    //     _prompt = promptGenerator.GetPrompt();
+    //     Console.WriteLine(_prompt);
+    //     _response = Console.ReadLine();
+    //     Console.WriteLine("Wich was the overall feeling?");
+    //     _overallFeeling = Console.ReadLine();
 
-    public void WriteEntry(Journal journal)
+    //     string text = $"{_date} - {_prompt}\n{_response} - Overall Feeling: {_overallFeeling}\nRecording time: {_time}\n";
+    //     journal._entries.Add(text);
+    //     Console.WriteLine("Entry added to the journal.");
+    // }
+
+    public void Display() 
     {
-        PromptGenerator promptGenerator = new PromptGenerator();
-        string prompt = promptGenerator.GetPrompt();
-        Console.WriteLine(prompt);
-        string entry = Console.ReadLine();
-        Console.WriteLine("How was the overall feeling?");
-        string overallFeeling = Console.ReadLine();
-
-        string text = $"{_date} - {prompt}\n{entry} - Overall Feeling: {overallFeeling}\nRecording time: {_time}\n";
-        journal._listOfEntries.Add(text);
-        Console.WriteLine("Entry added to the journal.");
+        Console.WriteLine($"{_date} - {_prompt}\n{_response}"); 
+        Console.WriteLine($"Overall Feeling: {_overallFeeling}");
+        Console.WriteLine($"Record Time: {_time}\n");
     }
 
-    public void DisplayEntries(Journal journal)
+    public string GetCommaDelimitedSaveString() 
     {
-        foreach (string entry in journal._listOfEntries)
-        {
-            Console.WriteLine(entry);
-        }
+        return $"{_date},{_time},{_prompt},{_response},{_overallFeeling}";
     }
 }

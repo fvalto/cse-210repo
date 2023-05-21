@@ -10,9 +10,9 @@ public class PromptGenerator
 
     public string GetPrompt()
     {
-        var random = new Random();
+        Random random = new Random();
         int randomIndex = random.Next(_listOfPrompts.Count);
-        string prompt = _listOfPrompts[randomIndex];
-        return prompt;
+        string ranprompt = _listOfPrompts[randomIndex];
+        return ranprompt;
     }
 }

@@ -1,63 +1,44 @@
 using System;
-using System.IO; 
-using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the Journal Program!");
-
         Journal journal = new Journal();
-
-        string askUser()
-        {
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.Write("Please select a choice: ");
-
-            string userChoice = Console.ReadLine();
-
-            switch (userChoice)
-            {
-                case "1":
-                    Entry wEntry = new Entry();
-                    wEntry.WriteEntry(journal);
-                    askUser();
-                    break;
-                case "2":
-                    Entry displayEntry = new Entry();
-                    displayEntry.DisplayEntries(journal);
-                    askUser();
-                    break;
-                case "3":
-                    Console.Write("Enter the file name .extention: ");
-                    string nameToLoad = Console.ReadLine();
-                    Journal loadFile = new Journal();
-                    loadFile.LoadFile(nameToLoad, journal);
-                    askUser();
-                    break;
-                case "4":
-                    Console.Write("Enter the file name .extention: ");
-                    string nameToSave = Console.ReadLine();
-                    Journal saveFile = new Journal();
-                    saveFile.SaveFile(nameToSave, journal);
-                    Console.WriteLine("FILE SAVED!");
-                    askUser();
-                    break;
-                case "5":
-                    break;
-                default:
-                    askUser();
-                    break;
-            }
-
-            return userChoice;
-        }
         
-        askUser();
+        bool loop = true;
+        while (loop)
+        {
+            Console.WriteLine("1. Write an entry.");
+            Console.WriteLine("2. Display all entries.");
+            Console.WriteLine("3. Load entries from a file.");
+            Console.WriteLine("4. Save entries to a file.");
+            Console.WriteLine("5. Exit.");
+            Console.Write("Please choose an option: ");
+            string userInput = Console.ReadLine();
+            int choose = int.Parse(userInput);
+            
+            if (choose == 1)
+            {
+                journal.Write();
+            }
+            else if (choose == 2)
+            {
+                journal.Display();
+            }
+            else if (choose == 3)
+            {
+                journal.LoadFile();
+            }
+            else if (choose == 4)
+            {
+                journal.SaveFile();
+            }
+            else if (choose == 5)
+            {
+                Console.WriteLine("Thanks for using this program.");
+                loop = false;
+            }
+        }
     }
- }
+}
