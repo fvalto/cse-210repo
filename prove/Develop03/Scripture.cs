@@ -1,19 +1,16 @@
 public class Scripture
 {
     List<Word> _words = new List<Word>();
-    private string _text;
     Reference _reference = new Reference();
     public Scripture(string book, int chapter, int verse, string text)
     {
         _reference = new Reference(book, chapter, verse);
-        _text = text;
-        SplitText(_text);
+        SplitText(text);
     }
     public Scripture(string book, int chapter, int verse, int endVerse, string text)
     {
         _reference = new Reference(book, chapter, verse, endVerse);
-        _text = text;
-        SplitText(_text);
+        SplitText(text);
     }
     public void DisplayReference()
     {
@@ -21,12 +18,12 @@ public class Scripture
     }
     public void DisplayText()
     {
-        _text = "";
+        string text = "";
         foreach (Word wordInstance in _words)
         {
-            _text += wordInstance.GetWord() + " ";
+            text += wordInstance.GetWord() + " ";
         }
-        Console.WriteLine(_text);
+        Console.WriteLine(text);
     }
 
     public void SplitText(string fullText)
@@ -56,10 +53,14 @@ public class Scripture
     public void HideRandomWords(string fullText)
     {
         Random random = new Random();
-        int randomIndex = random.Next(_words.Count);
-        if (_words[randomIndex].IsHidden() == false)
+        while (true)
         {
-            _words[randomIndex].Hide();
+            int randomIndex = random.Next(_words.Count);
+            if (!_words[randomIndex].IsHidden())
+            {
+                _words[randomIndex].Hide();
+                break;
+            }
         }
     }
 

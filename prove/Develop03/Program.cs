@@ -16,9 +16,7 @@ class Program
             userInput = Console.ReadLine().ToLower();
             Console.Clear();
             _scripture.DisplayReference(); 
-            _scripture.HideRandomWords(scriptureText); 
-            _scripture.HideRandomWords(scriptureText); 
-            _scripture.HideRandomWords(scriptureText); 
+            _scripture.HideRandomWords(scriptureText);
             _scripture.DisplayText();
             if (_scripture.isCompletelyHidden()) {
                 userInput = "quit";
