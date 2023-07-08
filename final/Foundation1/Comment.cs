@@ -5,7 +5,7 @@ public class Comment
     public Comment(string name, string comment)
     {
         _name = name;
-     _comment = comment;
+        _comment = comment;
     }
     
     public void Display()
